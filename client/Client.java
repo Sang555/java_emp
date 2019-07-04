@@ -10,21 +10,24 @@ import java_training.CurrentAccount;
 import java_training.Employee;
 import java_training.SalaryAccount;
 import java_training.SavingAccount;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Client {
 	
-	public static void operate(Employee emp, Account account)
+	public static void operate( Account account)
 	{
 		Scanner scanner= new Scanner(System.in);
 		boolean cont = true;
 		while(cont)
 		{
-			System.out.println("Enter Choice:\n 1.view balance \n 2.deposit\n 3. withdraw\n \n 4.exit\n");
+			System.out.println("Enter Choice:\n 0.create account 1.view balance \n 2.deposit\n 3. withdraw\n \n 4.exit\n");
 			int choices = scanner.nextInt();
 			
 			switch(choices)
 			{
+			
+			
 			case 1:
 			{
 				System.out.println("Your Balance "+account.getBalance());
@@ -62,12 +65,20 @@ public static void main(String[] args)
 {
 	
 	Scanner scanner= new Scanner(System.in);
+	List<Account> accounts=new ArrayList<>();
 	String city, street, state;
 	String name;
 	Double salary;
 	int id;
 	int type;
+	boolean cnt=true;
+	while(cnt)
+	{
+	System.out.println("Choose :\n 1.add account\n 2.operate\n");
+	int c= scanner.nextInt();
 	
+	if(c==1)
+	{
 	System.out.println("ENTER YOUR PERSONAL DETAILS");
 	System.out.println("Enter city: ");
 	city = scanner.nextLine();
@@ -104,10 +115,11 @@ public static void main(String[] args)
 		System.out.println("Enter balance: ");
 		double balance= scanner.nextDouble();
 		Account  savingaccount=new SavingAccount(emp1, balance);
+		accounts.add(savingaccount);
 		savingaccount.printDetails();
 	
 	System.out.println("YOUR ACCOUNT IS CREATED SUCCESSFULLY\n YOUR ID IS "+ savingaccount.getAccountId());
-	operate(emp1, savingaccount);
+	//operate(emp1, savingaccount);
 	
 	}
 	else if( type==1 )
@@ -115,25 +127,45 @@ public static void main(String[] args)
 		System.out.println("Enter balance: ");
 		double balance= scanner.nextDouble();
 		CurrentAccount  currentaccount=new CurrentAccount(emp1, balance);
+		accounts.add(currentaccount);
 		currentaccount.printDetails();
 	
 	System.out.println("YOUR ACCOUNT IS CREATED SUCCESSFULLY\n YOUR ID IS "+ currentaccount.getAccountId());
-	operate(emp1, currentaccount);
+	//operate(emp1, currentaccount);
 	}
 	else if( type==2 )
 	{
 		System.out.println("Enter balance: ");
 		double balance= scanner.nextDouble();
 		SalaryAccount  salaryaccount=new SalaryAccount(emp1, balance);
+		accounts.add(salaryaccount);
 		salaryaccount.printDetails();
 	
 	System.out.println("YOUR ACCOUNT IS CREATED SUCCESSFULLY\n YOUR ID IS "+ salaryaccount.getAccountId());
 	
-	operate(emp1, salaryaccount);
-	
+	//operate(emp1, salaryaccount);
+
 	}
 	}
-	
+	else
+	{
+		System.out.println("Enter id\n : ");
+		int id1=  scanner.nextInt();
+		for(Account acc : accounts)
+		{
+			if(acc.getAccountId()==id1)
+				{
+				operate(acc);
+				}
+			else
+			{
+				
+			}
+		}
+	}
+	}
+}
+}
 	/*
 	System.out.println("Initial vacation days "+ sang.getVacationDays());
 	sang.applyForLeave(20);
@@ -146,4 +178,4 @@ public static void main(String[] args)
 	*/
 	
 	//account.printDetails();
-}
+	
