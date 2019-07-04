@@ -149,6 +149,7 @@ public static void main(String[] args)
 	}
 	else
 	{
+		int found=0;
 		System.out.println("Enter id\n : ");
 		int id1=  scanner.nextInt();
 		for(Account acc : accounts)
@@ -156,12 +157,15 @@ public static void main(String[] args)
 			if(acc.getAccountId()==id1)
 				{
 				operate(acc);
+				found=1;
 				}
 			else
 			{
 				
 			}
 		}
+		if(found==0)
+			System.out.println("Account not found");
 	}
 	}
 }
