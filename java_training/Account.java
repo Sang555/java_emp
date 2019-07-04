@@ -1,6 +1,6 @@
 package java_training;
 
-public class Account {
+public abstract class Account {
 	final public  int accountId;
 	//private double balance=1000;
 
@@ -17,32 +17,18 @@ public class Account {
 	}
 	*/
 
-	public double deposit(double amount)
-	{
-		return 0;
-	}
+	public abstract double deposit(double amount);
 	
-	public double  withdraw(double amount)
-	{
-		return 0;
-	}
-	public double getBalance() {
-		return 0;
-	}
-
-	public void setBalance(double balance) {
-
-	}
+	public abstract double  withdraw(double amount);
+	
+	public abstract double getBalance();
+	public abstract void setBalance(double balance);
 	
 	
-	public String getDetails()
-	{
-		return "";
-	}
-	public void printDetails()
-	{
+	public abstract String getDetails();
 	
-	}
+	public abstract void printDetails();
+	
 	public Account(Employee employee)
 	{
 		this.accountId=++id;
