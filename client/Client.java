@@ -1,6 +1,8 @@
 package client;
 
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -11,7 +13,12 @@ import java_training.Employee;
 import java_training.SalaryAccount;
 import java_training.SavingAccount;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import client.Comparators;
+import client.Comp;
 
 public class Client {
 	
@@ -65,7 +72,7 @@ public static void main(String[] args)
 {
 	
 	Scanner scanner= new Scanner(System.in);
-	List<Account> accounts=new ArrayList<>();
+	Set<Account> accounts=new TreeSet<>();
 	String city, street, state;
 	String name;
 	Double salary;
@@ -76,7 +83,7 @@ public static void main(String[] args)
 	{
 	System.out.println("Choose :\n 1.add account\n 2.operate\n");
 	int c= scanner.nextInt();
-	
+
 	if(c==1)
 	{
 	System.out.println("ENTER YOUR PERSONAL DETAILS");
@@ -149,6 +156,11 @@ public static void main(String[] args)
 	}
 	else
 	{
+		List<Account> listAccount= new ArrayList<>(accounts);
+		System.out.println(" Enter 1.ASC 2.DESC\n");
+		int ch = scanner.nextInt();
+        Collections.sort(listAccount, Comp.getComparators(ch));
+        System.out.println(listAccount);
 		int found=0;
 		System.out.println("Enter id\n : ");
 		int id1=  scanner.nextInt();
@@ -169,6 +181,7 @@ public static void main(String[] args)
 	}
 	}
 }
+
 }
 	/*
 	System.out.println("Initial vacation days "+ sang.getVacationDays());

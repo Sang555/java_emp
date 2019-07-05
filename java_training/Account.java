@@ -1,7 +1,15 @@
 package java_training;
 
-public abstract class Account {
-	final public  int accountId;
+import java.util.Objects;
+
+public abstract class Account implements Comparable<Account>{
+	 public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
+
+
+
+	public  int accountId;
 	//private double balance=1000;
 
 	private  static int id=100;
@@ -55,8 +63,38 @@ public abstract class Account {
 		return accountId;
 	}
 
-
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj==null)
+			return false;
+		if(obj.getClass() != Account.class)
+			return false;
+		Account a1=(Account)obj;
+		
+		// TODO Auto-generated method stub
+		return Objects.equals(this.accountId,a1.accountId);
+	}
+
+	 @Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return Objects.hash(this.id);
+	}
+
+	@Override
+	public int compareTo(Account o) {
+		// TODO Auto-generated method stub
+		return Integer.valueOf(this.accountId).compareTo(o.accountId);
+		
+	}
+
+
+	public String toString()
+	{
+		return ("Account Id" + String.valueOf(this.accountId));
+		
+	}
 	
 
 }
